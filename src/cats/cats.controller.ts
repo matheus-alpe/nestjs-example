@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Req,
 } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
@@ -20,9 +21,10 @@ export class CatsController {
     return this.catsService.create(createCatDto);
   }
 
+  // TODO: keep reading https://docs.nestjs.com/controllers#request-object
   @Get('breed')
-  findAll() {
-    return this.catsService.findAll();
+  findAll(@Req() request: Request) {
+    return request.headers;
   }
 
   @Get(':id')
